@@ -34,17 +34,17 @@ export const StorageService = () => {
       const searchToken = filterObject?.searchToken.toLocaleLowerCase() ?? '';
       let filteredTodos = todos.filter((todo) => todo.title.toLocaleLowerCase().includes(searchToken));
 
-      if (filterObject.showPending === false) {
+      if (filterObject?.showPending === false) {
         const now = new Date();
         filteredTodos = filteredTodos.filter((t) => t.isCompleted || (t.dueDateTime && new Date(t.dueDateTime) < now));
       }
 
-      if (filterObject.showOverdue === false) {
+      if (filterObject?.showOverdue === false) {
         const now = new Date();
         filteredTodos = filteredTodos.filter((t) => t.isCompleted || t.dueDateTime === undefined || (t.dueDateTime && new Date(t.dueDateTime) > now));
       }
 
-      if (filterObject.showCompleted === false) {
+      if (filterObject?.showCompleted === false) {
         filteredTodos = filteredTodos.filter((t) => !t.isCompleted);
       }
 
